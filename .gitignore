@@ -1,0 +1,33 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Django
+*.sqlite3
+media/
+staticfiles/
+shield360-django/staticfiles/
+shield360-django/staticfiles.json
+shield360-django/db.sqlite3
+
+# Logs
+*.log
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
