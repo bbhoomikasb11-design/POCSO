@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - Shield360</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 900px;
+      max-width: 100%;
+      display: flex;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      background: white;
+    }
+
+    .left {
+      width: 50%;
+      padding: 60px 40px;
+      background: white;
+    }
+
+    .left h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .left p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      margin-bottom: 6px;
+      display: block;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px solid #e0e0e0;
+      background-color: #f9f9f9;
+      color: #333;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+      background-color: white;
+    }
+
+    #errorMessage {
+      display: none;
+      color: #ff4444;
+      background: #ffebee;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .signup {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+    }
+
+    .signup a {
+      color: #667eea;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .right {
+      width: 50%;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)),
+                  url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=800&q=80') center/cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+    }
+
+    .right::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .right h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .right p {
+      font-size: 16px;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote {
+      position: absolute;
+      bottom: 30px;
+      left: 40px;
+      font-size: 14px;
+      font-style: italic;
+      opacity: 0.9;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .left, .right {
+        width: 100%;
+        padding: 40px;
+      }
+
+      .right {
+        min-height: 200px;
+      }
+
+      .quote {
+        position: static;
+        margin-top: 20px;
+      }
+    }
+  </style>
+  <script src="/public/js/api.js"></script>
+  <script src="/public/js/auth.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <div class="left">
+      <h2>Create Account</h2>
+      <p>Join Shield360 to protect and empower children</p>
+
+      <form id="registerForm">
+        <div id="errorMessage"></div>
+        
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="John Doe" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="your@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" required />
+        </div>
+
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role" required>
+            <option value="child">Child</option>
+            <option value="guardian">Guardian</option>
+            <option value="teacher">Teacher</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="ageGroup" style="display:none;">
+          <label for="age">Age</label>
+          <input type="number" id="age" placeholder="12" min="1" max="17" />
+        </div>
+
+        <button type="submit" class="btn" id="registerBtn">Register</button>
+      </form>
+
+      <div class="signup">
+        Already have an account? <a href="login.html">Login here</a>
+      </div>
+    </div>
+
+    <div class="right">
+      <h1>Welcome to Shield360</h1>
+      <p>Your trusted partner in child safety and protection</p>
+
+      <div class="quote">
+        "Every child deserves a safe and protected future. Join us in making a difference."
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show/hide age field based on role
+    document.getElementById('role').addEventListener('change', function() {
+      const ageGroup = document.getElementById('ageGroup');
+      if (this.value === 'child') {
+        ageGroup.style.display = 'block';
+        document.getElementById('age').required = true;
+      } else {
+        ageGroup.style.display = 'none';
+        document.getElementById('age').required = false;
+      }
+    });
+
+    // Handle registration
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const errorDiv = document.getElementById('errorMessage');
+      const registerBtn = document.getElementById('registerBtn');
+      
+      const userData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value,
+        role: document.getElementById('role').value,
+      };
+
+      if (userData.role === 'child') {
+        userData.age = parseInt(document.getElementById('age').value);
+      }
+
+      errorDiv.style.display = 'none';
+      registerBtn.textContent = 'Creating account...';
+      registerBtn.disabled = true;
+      
+      try {
+        const result = await Shield360Auth.handleRegister(userData);
+        if (!result.success) {
+          errorDiv.textContent = result.error || 'Registration failed. Please try again.';
+          errorDiv.style.display = 'block';
+        }
+      } catch (error) {
+        errorDiv.textContent = error.message || 'Registration failed. Please check your information.';
+        errorDiv.style.display = 'block';
+      } finally {
+        registerBtn.textContent = 'Register';
+        registerBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Shield 360{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">Shield360</div>
+      <nav class="nav">
+        <a href="/home.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/news.html">News</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/login.html" class="btn btn-primary">Login</a>
+        <a href="/register.html" class="btn btn-accent">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Shield 360. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
+

@@ -1,59 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact - Shield360</title>
   <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
   <style>
+    /* Reset and base */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f8f9fa;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f77f00, #fcbf49);
       color: #333;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Navbar */
+    /* Navigation */
     nav {
-      background: #fff;
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
-      border-bottom: 1px solid #eee;
+      padding: 18px 40px;
+      border-bottom: 2px solid #9f4800;
+      box-shadow: 0 4px 12px rgb(159 72 0 / 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      font-family: 'Poppins', sans-serif;
     }
     nav .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #e63946;
+      font-size: 28px;
+      font-weight: 700;
+      color: #9f4800;
+      user-select: none;
+      letter-spacing: 1.5px;
     }
-    nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
-    nav ul li { margin-left: 20px; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
     nav ul li a {
-      text-decoration: none; font-weight: bold; color: #333;
+      font-weight: 600;
+      font-size: 16px;
+      color: #5a3e00;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      padding-bottom: 4px;
+      border-bottom: 3px solid transparent;
     }
-    nav ul li a.active { color: #e63946; border-bottom: 2px solid #e63946; padding-bottom: 3px; }
+    nav ul li a.active,
+    nav ul li a:hover {
+      color: #fcbf49;
+      border-bottom-color: #fcbf49;
+    }
     .btn-donate {
-      background: #e63946; color: #fff; padding: 8px 15px; border-radius: 4px;
-      text-decoration: none; font-weight: bold;
+      background: #9f4800;
+      color: #fcbf49;
+      font-weight: 700;
+      padding: 10px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgb(159 72 0 / 0.5);
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+    .btn-donate:hover {
+      background: #cc6200;
+      box-shadow: 0 8px 28px rgb(204 98 0 / 0.7);
     }
 
-    /* Hero Header */
+    /* Hero Section */
     .hero {
       text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #e63946, #f77f00);
+      padding: 80px 24px;
       color: #fff;
+      text-shadow: 2px 2px 8px rgb(0 0 0 / 0.6);
+      font-family: 'Poppins', sans-serif;
+      user-select: none;
     }
     .hero h1 {
-      margin-bottom: 15px;
-      font-size: 38px;
+      font-size: 3.4rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
     .hero p {
-      font-size: 18px;
+      font-size: 1.3rem;
       max-width: 650px;
       margin: auto;
+      font-weight: 400;
+      line-height: 1.5;
     }
 
     /* Contact Section */
@@ -61,83 +108,168 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
-      padding: 60px 20px;
+      gap: 36px;
+      padding: 60px 30px 100px;
+      max-width: 1120px;
+      margin: auto;
     }
     .contact-card {
-      flex: 1;
-      min-width: 300px;
+      flex: 1 1 350px;
       max-width: 450px;
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      background: #fff8f0;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgb(159 72 0 / 0.15);
+      padding: 28px 35px;
+      transition: transform 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 42px rgb(159 72 0 / 0.3);
     }
     .contact-card h2 {
-      margin-bottom: 15px;
-      color: #e63946;
+      font-family: 'Poppins', sans-serif;
+      color: #9f4800;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 26px;
       text-align: center;
     }
-    .contact-card p { margin: 10px 0; font-size: 15px; }
-
-    /* Helpline highlight */
-    .highlight {
-      background: #fef6f6;
-      border-left: 5px solid #e63946;
-      padding: 12px;
-      margin: 12px 0;
-      border-radius: 8px;
-      font-size: 15px;
+    .contact-card p {
+      font-size: 16px;
+      color: #593300;
+      line-height: 1.5;
+      margin-bottom: 16px;
     }
 
-    /* Support Center with images */
+    /* Highlight Box */
+    .highlight {
+      background: #fff3e0;
+      border-left: 6px solid #fcbf49;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      color: #805200;
+      margin: 20px 0 0;
+      font-weight: 600;
+      user-select: none;
+      box-shadow: 2px 2px 14px rgb(252 191 73 / 0.15);
+    }
+
+    /* Support Centers */
     .support-item {
       display: flex;
       align-items: center;
-      margin-bottom: 15px;
-      background: #fafafa;
-      border-radius: 8px;
-      padding: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      background: #fff3df;
+      border-radius: 14px;
+      padding: 12px 15px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 15px rgb(252 191 73 / 0.3);
+      transition: background 0.3s ease;
+    }
+    .support-item:hover {
+      background: #fcd98f;
     }
     .support-item img {
-      width: 70px;
-      height: 70px;
-      border-radius: 8px;
+      width: 80px;
+      height: 80px;
+      border-radius: 14px;
       object-fit: cover;
-      margin-right: 15px;
+      margin-right: 18px;
+      box-shadow: 0 4px 12px rgb(159 72 0 / 0.3);
+      user-select: none;
+      pointer-events: none;
     }
-    .support-item div { font-size: 14px; }
+    .support-item div {
+      font-size: 16px;
+      color: #704b00;
+      font-weight: 600;
+      line-height: 1.3;
+      user-select: text;
+    }
 
     /* Footer */
     footer {
-      background: #222;
-      color: #bbb;
+      background: #9f4800;
+      color: #fff2db;
       padding: 40px 20px;
       text-align: center;
-      margin-top: 40px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      user-select: none;
     }
     footer a {
-      color: #fff;
-      margin: 0 8px;
+      color: #fff2db;
+      font-weight: 600;
+      margin: 0 10px;
       text-decoration: none;
-      font-size: 14px;
+      transition: text-decoration 0.3s ease;
     }
-    footer a:hover { text-decoration: underline; }
+    footer a:hover {
+      text-decoration: underline;
+      color: #ffe199;
+      cursor: pointer;
+    }
 
     /* Social Icons */
     .social-icons {
-      margin-top: 20px;
+      margin-top: 25px;
     }
     .social-icons a {
       display: inline-block;
-      margin: 0 10px;
-      color: #fff;
-      font-size: 20px;
+      margin: 0 12px;
+      font-size: 24px;
+      color: #fff2db;
       transition: color 0.3s ease;
     }
     .social-icons a:hover {
-      color: #e63946;
+      color: #fcbf49;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .contact-container {
+        padding: 50px 20px 80px;
+      }
+      nav {
+        padding: 16px 20px;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+        max-width: 90%;
+      }
+      nav ul {
+        gap: 18px;
+      }
+    }
+    @media (max-width: 500px) {
+      nav ul {
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+      }
+      .contact-container {
+        flex-direction: column;
+        padding: 40px 15px 60px;
+      }
+      .contact-card {
+        max-width: 100%;
+        margin: auto;
+      }
+      nav .btn-donate {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -155,10 +287,10 @@
     <a href="login.html" class="btn-donate">LOGIN</a>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section class="hero">
     <h1>We’re Here for Every Child</h1>
-    <p>Reach out for help, guidance, and support. Together, we can create a safe and Atmanirbhar future for every child.</p>
+    <p>Reach out for help, guidance, and support. Together, we can create a safe and [translate]Atmanirbhar[/translate] future for every child.</p>
   </section>
 
   <!-- Contact Section -->
@@ -183,21 +315,21 @@
     <div class="contact-card">
       <h2>Support Centers</h2>
       <div class="support-item">
-        <img src="delhi.jpg" alt="Delhi Center">
+        <img src="delhi.jpg" alt="Delhi Center" loading="lazy" />
         <div>
           <strong>Delhi Child Welfare Committee</strong><br>
           Safdarjung Enclave, New Delhi
         </div>
       </div>
       <div class="support-item">
-        <img src="mumbai.jpg" alt="Mumbai Center">
+        <img src="mumbai.jpg" alt="Mumbai Center" loading="lazy" />
         <div>
           <strong>Mumbai Child Protection Unit</strong><br>
           Bandra East, Mumbai
         </div>
       </div>
       <div class="support-item">
-        <img src="ban.jpg" alt="Bangalore Center">
+        <img src="ban.jpg" alt="Bangalore Center" loading="lazy" />
         <div>
           <strong>Bangalore Juvenile Care Center</strong><br>
           Indiranagar, Bangalore
@@ -219,12 +351,12 @@
       <a href="#">Terms & Conditions</a> | 
       <a href="contact.html">Contact Us</a>
     </div>
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
+    <div class="social-icons" role="list">
+      <a href="#" aria-label="Facebook" role="listitem"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Twitter" role="listitem"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Instagram" role="listitem"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="YouTube" role="listitem"><i class="fab fa-youtube"></i></a>
+      <a href="#" aria-label="LinkedIn" role="listitem"><i class="fab fa-linkedin"></i></a>
     </div>
   </footer>
 

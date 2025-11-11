@@ -1,232 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>POCSO News Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>POCSO News Portal - Shield360</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+    /* Reset and base */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
     body {
-      margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: #f4f6f9;
+      background: #fff8f0;
       color: #333;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Header */
-    .header {
-      background: linear-gradient(90deg, #e69039, #e7b736);
-      color: white;
-      text-align: center;
-      padding: 50px 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    .header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
-    .header p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      font-weight: 300;
-    }
-nav {
+    nav {
       background: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
-      border-bottom: 1px solid #eee;
+      padding: 16px 40px;
+      border-bottom: 3px solid #ff6f3c;
       position: sticky;
       top: 0;
       z-index: 1000;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 2px 10px rgb(255 111 60 / 0.2);
     }
-    nav .logo { font-size: 22px; font-weight: bold; color: #e68739; }
-    nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
-    nav ul li { margin-left: 20px; }
+    nav .logo {
+      color: #ff6f3c;
+      font-size: 28px;
+      font-weight: 700;
+      user-select: none;
+      letter-spacing: 1px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
     nav ul li a {
+      font-weight: 600;
+      color: #5a5a5a;
       text-decoration: none;
-      font-weight: bold;
-      color: #333;
+      transition: color 0.3s;
     }
-    nav ul li a.active { color: #e6a439; border-bottom: 2px solid #e63946; padding-bottom: 3px; }
-    /* Container */
+    nav ul li a.active,
+    nav ul li a:hover {
+      color: #ff6f3c;
+      border-bottom: 3px solid #ff6f3c;
+      padding-bottom: 6px;
+    }
+    nav .btn-login {
+      background: #ff6f3c;
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgb(255 111 60 / 0.3);
+      transition: background 0.3s ease;
+      user-select: none;
+      text-decoration: none;
+    }
+    nav .btn-login:hover {
+      background: #e65c2a;
+      box-shadow: 0 7px 20px rgb(230 92 42 / 0.5);
+    }
+
+    .header {
+      background: linear-gradient(90deg, #ff6f3ccc, #ffaf6bcc), url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 70px 20px 90px;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: inset 0 0 60px rgb(0 0 0 / 0.5);
+      user-select: none;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+    .header p {
+      font-size: 1.4rem;
+      font-weight: 300;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
     .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 960px;
+      margin: auto;
+      padding: 0 20px 60px;
     }
 
     h2 {
+      font-family: 'Poppins', sans-serif;
+      color: #ff6f3c;
+      font-weight: 700;
+      font-size: 2rem;
       text-align: center;
-      color: #2c3e50;
-      margin-bottom: 30px;
-      font-size: 1.8rem;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+      user-select: none;
     }
 
-    /* Accordion */
     .accordion {
       background: #fff;
-      border-radius: 12px;
-      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+      margin-bottom: 30px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
+      transition: transform 0.3s ease;
       cursor: pointer;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 12px 20px;
+      align-items: center;
     }
-
     .accordion:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgb(255 111 60 / 0.3);
     }
 
     .accordion-header {
-      padding: 18px 25px;
-      font-size: 18px;
+      flex-grow: 1;
+      font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      background: linear-gradient(90deg, #34495e, #2c3e50);
-      color: white;
+      font-size: 1.15rem;
+      color: #ff5722;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 14px;
+      user-select: none;
     }
     .accordion-header i {
-      margin-right: 12px;
-      font-size: 20px;
+      font-size: 24px;
+      color: #ff6f3c;
+      min-width: 30px;
     }
 
     .accordion-body {
       max-height: 0;
       overflow: hidden;
-      padding: 0 25px;
-      background: #fafafa;
-      color: #444;
+      padding-left: 44px;
+      flex-basis: 100%;
+      background: #fff5eb;
+      border-radius: 0 0 15px 15px;
+      color: #5a5a5a;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.55;
       transition: max-height 0.5s ease, padding 0.3s ease;
     }
-
     .accordion-body.open {
-      padding: 20px 25px;
+      padding: 18px 20px 20px 44px;
+      max-height: 400px;
     }
-
     .accordion-body p {
-      margin: 10px 0;
-      line-height: 1.7;
+      margin-bottom: 12px;
     }
-
     .accordion-body a {
-      color: #d5802c;
-      font-weight: 500;
+      color: #ff6f3c;
+      font-weight: 600;
       text-decoration: none;
+      transition: color 0.3s ease;
     }
     .accordion-body a:hover {
       text-decoration: underline;
+      color: #e05317;
     }
 
+    /* Live image next to news header */
+    .news-content {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .news-image {
+      flex-shrink: 0;
+      width: 120px;
+      height: 80px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.15);
+    }
     /* Footer */
     footer {
-      background: #2c3e50;
-      color: #bbb;
+      background: #ff6f3c;
+      color: #fef7f0;
       padding: 30px 20px;
       text-align: center;
-      margin-top: 50px;
-    }
-    footer p {
-      margin: 5px 0;
+      user-select: none;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-top: 60px;
     }
     footer a {
-      color: #fff;
-      margin: 0 8px;
+      color: #fef7f0;
+      margin: 0 12px;
+      font-weight: 600;
       text-decoration: none;
-      font-size: 14px;
+      transition: text-decoration 0.3s ease;
     }
     footer a:hover {
       text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
-      .header h1 {
-        font-size: 2rem;
-      }
-      h2 {
-        font-size: 1.4rem;
+    @media (max-width: 700px) {
+      .accordion {
+        flex-direction: column;
+        padding: 16px;
       }
       .accordion-header {
-        font-size: 16px;
+        justify-content: flex-start;
+      }
+      .accordion-body {
+        padding-left: 12px !important;
+      }
+      .news-image {
+        width: 100%;
+        height: 180px;
+        border-radius: 15px;
       }
     }
   </style>
 </head>
 <body>
- <nav>
+
+  <nav>
     <div class="logo">Shield360</div>
     <ul id="menu">
       <li><a href="home.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="news.html">News</a></li>
+      <li><a class="active" href="news.html">News</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <a href="login.html" class="btn-donate">LOGIN</a>
+    <a href="login.html" class="btn-login">Login</a>
   </nav>
-  <!-- Header -->
-  <div class="header">
-    <h1>POCSO News Portal</h1>
-    <p>Latest Legal Updates & Child Safety Cases in India</p>
-  </div>
 
-  <div class="container">
+  <header class="header">
+    <h1>POCSO News Portal</h1>
+    <p>Stay updated with the latest legal and child safety case news in India</p>
+  </header>
+
+  <main class="container">
     <h2>Recent POCSO Act Cases & Updates</h2>
 
     <div class="accordion">
       <div class="accordion-header"><i class="fas fa-school"></i> Hosur School Abuse Case</div>
       <div class="accordion-body">
-        <p>In Hosur, Tamil Nadu, a 61-year-old private school owner, along with four others—including his wife and a teacher—was arrested under the POCSO Act for the sexual harassment of a 9-year-old girl.</p>
-        <p><strong>Source:</strong> <a href="https://timesofindia.indiatimes.com/city/coimbatore/owner-of-primary-school-four-others-arrested-under-pocso-act-in-hosur/articleshow/124056056.cms" target="_blank">The Times of India</a></p>
+        <div class="news-content">
+          <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=60');"></div>
+          <div>
+            <p>In Hosur, Tamil Nadu, a 61-year-old private school owner, along with four others—including his wife and a teacher—was arrested under the POCSO Act for the sexual harassment of a 9-year-old girl.</p>
+            <p><strong>Read More:</strong> <a href="https://timesofindia.indiatimes.com/city/coimbatore/owner-of-primary-school-four-others-arrested-under-pocso-act-in-hosur/articleshow/124056056.cms" target="_blank" rel="noopener noreferrer">The Times of India</a></p>
+            <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@TOI" target="_blank" rel="noopener noreferrer">Times of India Channel</a></p>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="accordion">
       <div class="accordion-header"><i class="fas fa-user-slash"></i> Moradabad Father Arrested</div>
       <div class="accordion-body">
-        <p>A 40-year-old man in Moradabad was booked under the POCSO Act for allegedly raping and impregnating his 15-year-old daughter. The victim informed her mother, leading to the investigation.</p>
-        <p><strong>Source:</strong> <a href="https://timesofindia.indiatimes.com/city/meerut/40yo-man-booked-for-raping-impregnating-minor-daughter/articleshow/124053986.cms" target="_blank">The Times of India</a></p>
+        <div class="news-content">
+          <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1524635962365-565de129d48a?auto=format&fit=crop&w=400&q=60');"></div>
+          <div>
+            <p>A 40-year-old man in Moradabad was booked under the POCSO Act for allegedly raping and impregnating his 15-year-old daughter. The investigation followed after the victim informed her mother.</p>
+            <p><strong>Read More:</strong> <a href="https://timesofindia.indiatimes.com/city/meerut/40yo-man-booked-for-raping-impregnating-minor-daughter/articleshow/124053986.cms" target="_blank" rel="noopener noreferrer">The Times of India</a></p>
+            <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@TOI" target="_blank" rel="noopener noreferrer">Times of India Channel</a></p>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="accordion">
       <div class="accordion-header"><i class="fas fa-child"></i> Nagpur Minor Pregnant After Rape</div>
       <div class="accordion-body">
-        <p>In Nagpur, a 16-year-old girl was found to be pregnant after abdominal pain complaints. She had been sexually assaulted by a classmate of the same age. The accused has been arrested.</p>
-        <p><strong>Source:</strong> <a href="https://timesofindia.indiatimes.com/city/ahmedabad/teenage-girl-learns-she-is-6-months-pregnant-rape-investigation-begins/articleshow/119495966.cms" target="_blank">The Times of India</a></p>
+        <div class="news-content">
+          <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1502784444187-19a7c87d7fca?auto=format&fit=crop&w=400&q=60');"></div>
+          <div>
+            <p>In Nagpur, a 16-year-old girl was found to be pregnant after abdominal pain complaints related to sexual assault by a classmate. The accused has been arrested by authorities.</p>
+            <p><strong>Read More:</strong> <a href="https://timesofindia.indiatimes.com/city/ahmedabad/teenage-girl-learns-she-is-6-months-pregnant-rape-investigation-begins/articleshow/119495966.cms" target="_blank" rel="noopener noreferrer">The Times of India</a></p>
+            <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@TOI" target="_blank" rel="noopener noreferrer">Times of India Channel</a></p>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="accordion">
       <div class="accordion-header"><i class="fas fa-gavel"></i> Kanpur Lawyer Charged with Extortion</div>
       <div class="accordion-body">
-        <p>In Kanpur, a lawyer and his associate were charged with extorting ₹50 lakh by filing a false rape case under the POCSO Act against a BJP leader. Police confirmed the extortion claim.</p>
-        <p><strong>Source:</strong> <a href="https://timesofindia.indiatimes.com/city/kanpur/chargesheet-prepared-against-lawyer-associates-for-extortion/amp_articleshow/124055050.cms" target="_blank">The Times of India</a></p>
+        <div class="news-content">
+          <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=400&q=60');"></div>
+          <div>
+            <p>A Kanpur lawyer and his associate were charged with extortion by filing a false rape case under the POCSO Act against a BJP leader. Police have substantiated the claims of extortion.</p>
+            <p><strong>Read More:</strong> <a href="https://timesofindia.indiatimes.com/city/kanpur/chargesheet-prepared-against-lawyer-associates-for-extortion/amp_articleshow/124055050.cms" target="_blank" rel="noopener noreferrer">The Times of India</a></p>
+            <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@TOI" target="_blank" rel="noopener noreferrer">Times of India Channel</a></p>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="accordion">
       <div class="accordion-header"><i class="fas fa-venus-mars"></i> Gender-Neutral Application of POCSO</div>
       <div class="accordion-body">
-        <p>The Karnataka High Court reaffirmed that the POCSO Act is gender-neutral, holding that both men and women can be tried for child sexual assault.</p>
-        <p><strong>Source:</strong> <a href="https://www.ndtv.com/india-news/pocso-act-is-gender-neutral-intends-to-safeguard-childhood-karnataka-high-court-9112788" target="_blank">NDTV</a></p>
+        <div class="news-content">
+          <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1532619675605-c0926ce5c885?auto=format&fit=crop&w=400&q=60');"></div>
+          <div>
+            <p>The Karnataka High Court reaffirmed that the POCSO Act is gender-neutral, clarifying that both men and women can be tried for child sexual assault under this law.</p>
+            <p><strong>Read More:</strong> <a href="https://www.ndtv.com/india-news/pocso-act-is-gender-neutral-intends-to-safeguard-childhood-karnataka-high-court-9112788" target="_blank" rel="noopener noreferrer">NDTV</a></p>
+            <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@ndtv" target="_blank" rel="noopener noreferrer">NDTV Channel</a></p>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="accordion">
       <div class="accordion-header"><i class="fas fa-balance-scale"></i> Age of Consent Debate</div>
       <div class="accordion-body">
-        <p>The Supreme Court is reviewing petitions seeking to lower the age of consent from 18 to 16 years. While some advocate for change, the government opposes it to safeguard minors.</p>
-        <p><strong>Source:</strong> <a href="https://lawbeat.in/top-stories/age-of-consent-debate-new-report-warns-against-weakening-indias-pocso-act-1515626" target="_blank">LawBeat</a></p>
+        <div class="news-content">
+          <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=400&q=60');"></div>
+          <div>
+            <p>The Supreme Court is reviewing petitions seeking to lower the age of consent from 18 to 16 years. The government resists these changes emphasizing protection of minors.</p>
+            <p><strong>Read More:</strong> <a href="https://lawbeat.in/top-stories/age-of-consent-debate-new-report-warns-against-weakening-indias-pocso-act-1515626" target="_blank" rel="noopener noreferrer">LawBeat</a></p>
+            <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@LawBeatIndia" target="_blank" rel="noopener noreferrer">LawBeat Channel</a></p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 
-  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Shield360 | POCSO Awareness Portal</p>
     <p>
@@ -237,7 +354,7 @@ nav {
   </footer>
 
   <script>
-    // Accordion functionality
+    // Accordion toggling
     const accordions = document.querySelectorAll('.accordion');
     accordions.forEach(acc => {
       const header = acc.querySelector('.accordion-header');

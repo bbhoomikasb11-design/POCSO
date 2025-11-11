@@ -187,6 +187,8 @@
       }
     }
   </style>
+  <script src="/public/js/api.js"></script>
+  <script src="/public/js/auth.js"></script>
 </head>
 <body>
 
@@ -195,7 +197,9 @@
       <h2>Login</h2>
       <p>Enter your account details</p>
 
-      <form>
+      <form id="loginForm">
+        <div id="errorMessage" style="display:none; color:#ff4444; background:#ffebee; padding:10px; border-radius:8px; margin-bottom:15px;"></div>
+        
         <div class="form-group">
           <label for="username">Institute Email</label>
           <input type="email" id="username" placeholder="teacher@school.edu" required />
@@ -206,20 +210,15 @@
           <input type="password" id="password" placeholder="••••••••" required />
         </div>
 
-        <div class="form-group captcha-box">
-          <span class="captcha-code">7XLM2</span>
-          <input type="text" placeholder="Enter Captcha" required />
-        </div>
-
         <div class="forgot">
           <a href="#">Forgot Password?</a>
         </div>
 
-<a href="teacher.html" class="btn">Login</a>
+        <button type="submit" class="btn" id="loginBtn">Login</button>
       </form>
 
       <div class="signup">
-        Don’t have an account? <a href="#">Sign up</a>
+        Don't have an account? <a href="/register.html">Sign up</a>
       </div>
     </div>
 
@@ -233,5 +232,32 @@
     </div>
   </div>
 
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorDiv = document.getElementById('errorMessage');
+      const loginBtn = document.getElementById('loginBtn');
+      
+      errorDiv.style.display = 'none';
+      loginBtn.textContent = 'Logging in...';
+      loginBtn.disabled = true;
+      
+      try {
+        const result = await Shield360Auth.handleLogin(email, password, 'teacher');
+        if (!result.success) {
+          errorDiv.textContent = result.error || 'Login failed. Please try again.';
+          errorDiv.style.display = 'block';
+        }
+      } catch (error) {
+        errorDiv.textContent = error.message || 'Login failed. Please check your credentials.';
+        errorDiv.style.display = 'block';
+      } finally {
+        loginBtn.textContent = 'Login';
+        loginBtn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>
